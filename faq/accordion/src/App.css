@@ -1,0 +1,37 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.accordion{
+  height: 500px;
+}
+
+.item {
+  margin-top: 10px;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 1s cubic-bezier(0, 1, 0, 1);
+}
+
+.content.show {
+  height: auto;
+  max-height: 5000px;
+  transition: all 1s cubic-bezier(1, 0, 1, 0);
+}
+
+.accordion {
+  max-width: 500px;
+}
