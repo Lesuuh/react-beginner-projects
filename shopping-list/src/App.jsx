@@ -4,14 +4,7 @@ import "./App.css";
 function App() {
   const [items, setItems] = useState([]);
 
-  function deleteItem(itemToRemove) {
-    const newItems = items.filter((item) => {
-      return item != itemToRemove;
-    });
-    setItems(newItems);
-  }
-
-  function onSubmit(event) {
+  function addItem(event) {
     event.preventDefault();
     const form = event.target;
     const input = form.item;
@@ -20,19 +13,34 @@ function App() {
     form.reset();
   }
 
+  function deleteItem(removeItem) {
+    const newItems = items.filter((item) => {
+      item != removeItem;
+    });
+
+    setItems(newItems);
+  }
+
   return (
     <>
-      <div className="shopping-list">
-        <h2>Items to buy</h2>
-        <form action="" onSubmit={onSubmit}>
-          <input type="text" name="item" placeholder="Add an item" required />
-          <button>Add</button>
-        </form>
-        <ul>
-          {items.map((item, index) => (
-            <Item key={index} item={item} deleteItem={deleteItem} />
-          ))}
-        </ul>
+      <div>
+        <div className="shopping-list">
+          <h2>Items to buy</h2>
+          <form action="" onSubmit={addItem}>
+            <input
+              type="text"
+              name="item"
+              placeholder="Add an item"
+              required
+            />
+            <button>Add</button>
+          </form>
+          <ul>
+            {items.map((item, index) => (
+              <Item key={index} item={item} deleteItem={deleteItem} />
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );
@@ -45,7 +53,7 @@ function Item({ item, deleteItem }) {
     <>
       <li>
         {item}
-        <button className="delete" onClick={() => deleteItem(item)}>
+        <button className="delete" onClick={deleteItem}>
           Delete
         </button>
       </li>
